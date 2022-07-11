@@ -33,6 +33,7 @@ const getWeatherData = (city) => {
     .catch((error) => console.log(error));
 };
 
+//function to show weather to Dom
 const showWeatherData = (WeatherData) => {
   console.log({ WeatherData });
   cityName.innerText = WeatherData.name;
@@ -41,3 +42,5 @@ const showWeatherData = (WeatherData) => {
   minTemp.innerText = WeatherData.main.temp_min;
   maxTemp.innerText = WeatherData.main.temp_max;
 };
+
+
