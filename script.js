@@ -34,10 +34,10 @@ const getWeatherData = (city) => {
 };
 
 const showWeatherData = (WeatherData) => {
-  console.log({ WeatherData });
+ // console.log({ WeatherData });
   cityName.innerText = WeatherData.name;
   weatherType.innerText = WeatherData.weather[0].main;
-  temp.innerText = WeatherData.main.temp;
-  minTemp.innerText = WeatherData.main.temp_min;
-  maxTemp.innerText = WeatherData.main.temp_max;
+  temp.innerText = (WeatherData.main.temp- 32)/1.8;
+  minTemp.innerText = (WeatherData.main.temp_min- 32)/1.8;
+  maxTemp.innerText = (WeatherData.main.temp_max- 32)/1.8;
 };
