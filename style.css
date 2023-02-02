@@ -25,4 +25,13 @@ img {
 
 .img-div {
     margin-top: 50px;
+    animation: fadeIn 5s;
+
+}
+
+@media (min-width: 700px) {
+    img {
+        height: auto;
+        width: auto;
+    }
 }
