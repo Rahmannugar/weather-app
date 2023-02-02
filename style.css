@@ -31,8 +31,6 @@ img {
 
 @media (min-width: 700px) {
     img {
-       
-
         width: fit-content;
     }
 }
