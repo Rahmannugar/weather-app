@@ -38,3 +38,6 @@ searchBtn.addEventListener("click", () => {
   weather(searchInput.value);
   //console.log(searchInput.value);
 });
+
+//api gotten from rapidapi
+//yahooweather
