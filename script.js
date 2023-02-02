@@ -1,44 +1,40 @@
-//declaring dom variables
-const temp = document.getElementById("temp");
-const weatherOutput = document.getElementById("weather-output");
-const cityName = document.getElementById("city-name");
-const weatherType = document.getElementById("weather-type");
-const minTemp = document.getElementById("min-temp");
-const maxTemp = document.getElementById("max-temp");
+const searchBtn = document.getElementById("searchBtn");
+const searchInput = document.getElementById("searchInput");
+const header = document.getElementById("header");
+const subHeader = document.getElementById("sub-header");
+const weatherImage = document.getElementById("weather-image");
 
-//this enables the search button function
-const searchCity = async () => {
-  const city = document.getElementById("city-input").value;
-  //console.log(city);
-  const data = await getWeatherData(city);
-  showWeatherData(data);
+const options = {
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": "1a2884bbb4msh90d2e4e73802769p17cd44jsn747ede59410c",
+    "X-RapidAPI-Host": "yahoo-weather5.p.rapidapi.com",
+  },
 };
 
-//function to get weather data
-const getWeatherData = (city) => {
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "d72c98894cmsh28b3af34c5863e1p19f360jsne4b9c3aa39ec",
-      "X-RapidAPI-Host": "community-open-weather-map.p.rapidapi.com",
-    },
-  };
-
-  return fetch(
-    `https://community-open-weather-map.p.rapidapi.com/weather?q=${city}&units=imperial`,
+const weather = async (value) => {
+  const response = await fetch(
+    `https://yahoo-weather5.p.rapidapi.com/weather?location=${value}&format=json&u=f`,
     options
-  )
-    .then((res) => res.json())
-    .then((data) => data)
-    .catch((error) => console.log(error));
+  );
+  const data = await response.json();
+  // console.log(data.current_observation.condition);
+  console.log(data);
+  const temp = (data.current_observation.condition.temperature - 32) * 0.55;
+  header.innerText = `${data.location.city} - ${data.current_observation.condition.text}`;
+  subHeader.innerText = `Temperature: ${temp.toFixed(2)}C`;
+  if (temp >= 20 < 30) {
+    weatherImage.src = "./neda-astani-KWTkd7mHqKE-unsplash.jpg";
+  } else if (temp >= 10 < 20) {
+    weatherImage.src = "./valentin-muller-bWtd1ZyEy6w-unsplash.jpg";
+  } else if (temp < 10) {
+    weatherImage.src = "./craig-whitehead-SuJp8ZpkubI-unsplash.jpg";
+  } else if (temp > 30) {
+    weatherImage.src = "./dedu-adrian-BxT5oqgztNc-unsplash.jpg";
+  }
 };
 
-//function to show weather to Dom
-const showWeatherData = (WeatherData) => {
-  // console.log({ WeatherData });
-  cityName.innerText = WeatherData.name;
-  weatherType.innerText = WeatherData.weather[0].main;
-  temp.innerText = ((WeatherData.main.temp - 32) / 1.8).toFixed(2);
-  minTemp.innerText = ((WeatherData.main.temp_min - 32) / 1.8).toFixed(2);
-  maxTemp.innerText = ((WeatherData.main.temp_max - 32) / 1.8).toFixed(2);
-};
+searchBtn.addEventListener("click", () => {
+  weather(searchInput.value);
+  //console.log(searchInput.value);
+});

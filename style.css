@@ -1,9 +1,28 @@
-#city-input, #weather-output {
-    max-width: 400px;
-    margin: 0 auto;
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+body {
+    background-color: black;
+    font-family: 'Itim', cursive;
 }
-  
+
 .banner {
-    color: #3f72ff;
     font-family: sans-serif;
+}
+
+#title {
+    color: white;
+    font-family: 'Itim', cursive;
+}
+
+#searchBtn:active {
+    background-color: blue;
+}
+
+img {
+    height: 100vh;
+    width: 100vw;
+}
+
+.img-div {
+    margin-top: 50px;
 }
